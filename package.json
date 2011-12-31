@@ -1,5 +1,5 @@
 {
-    "name": "My Life Runs On Code Blog"
+  "name": "my-life-runs-on-code"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {

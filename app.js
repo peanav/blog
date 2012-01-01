@@ -4,7 +4,8 @@
  */
 
 var express = require('express');
-
+var fs = require('fs');
+var marked = require('marked');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -35,5 +36,24 @@ app.get('/', function(req, res){
   });
 });
 
+app.get(/\/post\/([^\/]+)\/?/, function(req, res) {
+  fs.readFile('content/posts/' + req.params[0] + '.md', 'ascii', function(err, data) {
+    if(err) {
+      res.render('404', {
+        title: '404'
+      });
+    } else {
+      console.log(marked(data));
+      res.render('post', {
+        locals: {
+          title: 'test',
+          post_html: marked(data)
+        }
+      });
+    }
+  });
+});
+
 app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+

@@ -6,6 +6,7 @@
 var express = require('express');
 var fs = require('fs');
 var marked = require('marked');
+var props = require('props');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -43,11 +44,13 @@ app.get(/\/post\/([^\/]+)\/?/, function(req, res) {
         title: '404'
       });
     } else {
-      console.log(marked(data));
+      var post = props(data);
       res.render('post', {
         locals: {
-          title: 'test',
-          post_html: marked(data)
+          title: post.title,
+          date: post.date,
+          tags: post.tags,
+          post_html: marked(post.__content)
         }
       });
     }

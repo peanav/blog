@@ -1,2 +1,8 @@
 h1= title
 p Welcome to #{title}
+#posts
+  ol
+    each post in posts
+      li
+        h2= post.title
+        p= post.date

@@ -7,6 +7,7 @@ var express = require('express');
 var fs = require('fs');
 var marked = require('marked');
 var props = require('props');
+var post = require('./lib/post');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -32,8 +33,13 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Express'
+  post.all(function(err, posts) {
+    res.render('index', {
+      locals: {
+        title: 'MyLifeRunsOnCode',
+        posts: posts
+      }
+    });
   });
 });
 
@@ -60,3 +66,6 @@ app.get(/\/post\/([^\/]+)\/?/, function(req, res) {
 app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
+post.all(function(err, files) {
+  console.log(files);
+});

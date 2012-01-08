@@ -1,7 +1,19 @@
+@font-face {
+  font-family: 'BlackoutMidnight';
+  src: url('fonts/Blackout-Midnight-webfont.eot');
+  src: url('fonts/Blackout-Midnight-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Blackout-Midnight-webfont.woff') format('woff'), url('fonts/Blackout-Midnight-webfont.ttf') format('truetype'), url('fonts/Blackout-Midnight-webfont.svg#BlackoutMidnight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
-  padding: 50px;
+  padding: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00B7FF;
+}
+h2 {
+  font-size: 34px;
+  line-height: 40px;
+  font-family: 'BlackoutMidnight';
 }
